@@ -1,7 +1,9 @@
+const HOST = "http://localhost:8080";
+
 document.addEventListener('DOMContentLoaded', function () {
     // Fetch data from the API
     function fetchData() {
-        fetch('http://localhost:8080/task')
+        fetch(HOST + '/tasks')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -17,10 +19,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 data.forEach(item => {
                     const div = document.createElement('div');
                     div.innerHTML = `
-                        <h3>Task Number: ${item.tasknumber}</h3>
+                        <h3>Task Number: ${item.taskNumber}</h3>
                         <p>Task Name: ${item.taskName}</p>
                         <p>Task Date: ${item.taskDate}</p>
-                        <p>Task Done: ${item.taskdone ? 'Yes' : 'No'}</p>
+                        <p>Task Done: ${item.taskDone ? 'Yes' : 'No'}</p>
                     `;
                     apiDataDiv.appendChild(div);
                 });
@@ -29,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Error fetching data:', error);
             });
     }
+
     fetchData();
 
     document.getElementById('taskForm').addEventListener('submit', function(event) {
@@ -37,18 +40,18 @@ document.addEventListener('DOMContentLoaded', function () {
         const taskNumber = document.getElementById('taskNumber').value; 
         const taskName = document.getElementById('taskName').value;
         const taskDate = document.getElementById('taskDate').value;
-        const taskDone = document.getElementById('taskdone').checked;
+        const taskDone = document.getElementById('taskDone').checked;
     
         const taskData = {
-            tasknumber: taskNumber,  
+            taskNumber: taskNumber,  
             taskName: taskName,
             taskDate: taskDate,
-            taskdone: taskDone
+            taskDone: taskDone
         };
     
         console.log(taskData); 
     
-        fetch('http://localhost:8080/task', {
+        fetch(HOST + '/tasks', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
