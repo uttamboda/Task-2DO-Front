@@ -1,0 +1,38 @@
+#mytitale{
+    text-align: center;
+    color: rgb(56, 150, 119);
+    
+}
+#pending{
+    text-align: left;
+    color: rgb(42, 192, 192);
+}
+#pendingTasks{
+    text-align: left;
+    color: rgb(97, 184, 155);
+    background-color: rgb(68, 39, 39);
+    padding: 25px;
+}
+#completedTasks{
+    text-align: left;
+    color: rgb(196, 157, 110);
+    background-color: rgb(68, 53, 53);
+    padding: 25px;
+}
+#Completed{
+    text-align: left;
+    color: rgb(221, 167, 101);
+}
+body{
+    background-color: rgb(240, 213, 172);
+}
+a{
+    font-size: 25px;
+    padding-left: 25px;
+    
+}
+button{
+    color: rgb(179, 97, 124);
+    background-color: rgb(52, 40, 63);
+    
+}
