@@ -1,7 +1,9 @@
+const HOST = "http://localhost:8080";
+
 document.addEventListener('DOMContentLoaded', function () {
     // Fetch data from the API
     function fetchData() {
-        fetch('http://localhost:8080/task')
+        fetch(HOST + '/tasks')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -19,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
                 const completedTasks = data.filter(item => item.taskdone === true);
                 const pendingTasks = data.filter(item => item.taskdone === false);
+
     
                 completedTasks.forEach(item => {
                     const div = document.createElement('div');
@@ -47,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
     
+
     fetchData();
     
 
@@ -55,15 +59,18 @@ document.addEventListener('DOMContentLoaded', function () {
     
         const taskName = document.getElementById('taskName').value;
         const taskDate = document.getElementById('taskDate').value;
+        const taskDone = document.getElementById('taskDone').checked;
     
         const taskData = {
+          //  taskNumber: taskNumber,  
             taskName: taskName,
             taskDate: taskDate,
+            taskDone: taskDone
         };
     
         console.log(taskData); 
     
-        fetch('http://localhost:8080/task', {
+        fetch(HOST + '/tasks', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
