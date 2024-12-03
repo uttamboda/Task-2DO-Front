@@ -19,17 +19,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 completedDiv.innerHTML = '';
                 pendingDiv.innerHTML = '';
     
-                const completedTasks = data.filter(item => item.taskdone === true);
-                const pendingTasks = data.filter(item => item.taskdone === false);
+                const completedTasks = data.filter(item => item.taskDone === true);
+                const pendingTasks = data.filter(item => item.taskDone === false);
 
     
                 completedTasks.forEach(item => {
                     const div = document.createElement('div');
                     div.innerHTML = `
-                        <h3>Task Number: ${item.tasknumber}</h3>
+                        <h3>Task Number: ${item.taskNumber}</h3>
                         <p>Task Name: ${item.taskName}</p>
                         <p>Task Date: ${item.taskDate}</p>
-                        <p>Task Done: ${item.taskdone ? 'Yes' : 'No'}</p>
+                        <p>Task Done: ${item.taskDone ? 'Yes' : 'No'}</p>
                     `;
                     completedDiv.appendChild(div);
                 });
@@ -37,10 +37,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 pendingTasks.forEach(item => {
                     const div = document.createElement('div');
                     div.innerHTML = `
-                        <h3>Task Number: ${item.tasknumber}</h3>
+                        <h3>Task Number: ${item.taskNumber}</h3>
                         <p>Task Name: ${item.taskName}</p>
                         <p>Task Date: ${item.taskDate}</p>
-                        <p>Task Done: ${item.taskdone ? 'Yes' : 'No'}</p>
+                        <p>Task Done: ${item.taskDone ? 'Yes' : 'No'}</p>
                     `;
                     pendingDiv.appendChild(div);
                 });
@@ -59,13 +59,10 @@ document.addEventListener('DOMContentLoaded', function () {
     
         const taskName = document.getElementById('taskName').value;
         const taskDate = document.getElementById('taskDate').value;
-        const taskDone = document.getElementById('taskDone').checked;
-    
+       
         const taskData = {
-          //  taskNumber: taskNumber,  
             taskName: taskName,
-            taskDate: taskDate,
-            taskDone: taskDone
+            taskDate: taskDate 
         };
     
         console.log(taskData); 
