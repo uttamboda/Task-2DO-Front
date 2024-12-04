@@ -89,11 +89,12 @@ function fetchData() {
 
             completedTasks.forEach(item => {
                 const div = document.createElement('div');
+                div.classList.add('task-row');
                 div.innerHTML = `
-                    <h3>Task Number: ${item.taskNumber}</h3>
-                    <p>Task Name: ${item.taskName}</p>
-                    <p>Task Date: ${item.taskDate}</p>
-                    <p>Task Done: ${item.taskDone ? 'Yes' : 'No'}</p>
+                    <span>${item.taskNumber}</span>
+                    <span>${item.taskName}</span>
+                    <span>${item.taskDate}</span>
+                    <span>${item.taskDone ? 'Yes' : 'No'}</span>
                     <button onclick="markTaskNotDone(${item.taskNumber})">Mark as Not Done</button>
                 `;
                 completedDiv.appendChild(div);
@@ -101,12 +102,14 @@ function fetchData() {
 
             pendingTasks.forEach(item => {
                 const div = document.createElement('div');
+                div.classList.add('task-row');
+                
                 div.innerHTML = `
-                    <h3>Task Number: ${item.taskNumber}</h3>
-                    <p>Task Name: ${item.taskName}</p>
-                    <p>Task Date: ${item.taskDate}</p>
-                    <p>Task Done: ${item.taskDone ? 'Yes' : 'No'}</p>
-                    <button onclick="markTaskDone(${item.taskNumber})">Mark as Done</button>
+                     <span>${item.taskNumber}</span>
+                    <span>${item.taskName}</span>
+                    <span>${item.taskDate}</span>
+                    <span>${item.taskDone ? 'Yes' : 'No'}</span>
+                    <button onclick="markTaskDone(${item.taskNumber})">Mark Done</button>
                 `;
                 pendingDiv.appendChild(div);
             });

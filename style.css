@@ -1,38 +1,100 @@
-#mytitale{
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 20px;
+}
+
+
+#mytitale {
+    font-size: 2rem;
+    font-weight: bold;
     text-align: center;
-    color: rgb(56, 150, 119);
+    margin-bottom: 20px;
+}
+
+
+#pending, #completed {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 ;
+}
+
+.task-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.task-row {
+    background-color: #c0eaf0;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.task-row span {
+    font-size: 1rem;
+    color: #010808;
+}
+
+.task-row button {
+    background-color: #00796b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.task-row button:hover {
+    background-color: #004d40;
+}
+
+#pendingTasks, #completedTasks {
+    display: flex;
+    flex-direction: column;
+}
+
+#pendingTasks {
+    margin-top: 20px;
+}
+
+#completedTasks {
+    margin-top: 20px;
+}
+
+a {
+    display: inline-block;
+    text-align: center;
+    padding: 10px 20px;
+    background-color: #29b6f6;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    float: right;
     
 }
-#pending{
-    text-align: left;
-    color: rgb(42, 192, 192);
+
+a:hover {
+    background-color: #0288d1;
 }
-#pendingTasks{
-    text-align: left;
-    color: rgb(97, 184, 155);
-    background-color: rgb(68, 39, 39);
-    padding: 25px;
+
+h2 {
+    color: #0288d1;
+    text-align: center;
+    font-weight: bold;
 }
-#completedTasks{
-    text-align: left;
-    color: rgb(196, 157, 110);
-    background-color: rgb(68, 53, 53);
-    padding: 25px;
-}
-#Completed{
-    text-align: left;
-    color: rgb(221, 167, 101);
-}
-body{
-    background-color: rgb(240, 213, 172);
-}
-a{
-    font-size: 25px;
-    padding-left: 25px;
-    
-}
-button{
-    color: rgb(179, 97, 124);
-    background-color: rgb(52, 40, 63);
-    
+
+.task-row span:first-child {
+    font-weight: bold;
 }
