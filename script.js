@@ -91,10 +91,9 @@ function fetchData() {
                 const div = document.createElement('div');
                 div.classList.add('task-row');
                 div.innerHTML = `
-                    <span>${item.taskNumber}</span>
-                    <span>${item.taskName}</span>
-                    <span>${item.taskDate}</span>
-                    <span>${item.taskDone ? 'Yes' : 'No'}</span>
+                    <span class="task-number">${item.taskNumber}</span>
+                    <span class="task-name">${item.taskName}</span>
+                    <span class="task-date">${item.taskDate}</span>
                     <button onclick="markTaskNotDone(${item.taskNumber})">Mark as Not Done</button>
                 `;
                 completedDiv.appendChild(div);
@@ -105,10 +104,9 @@ function fetchData() {
                 div.classList.add('task-row');
                 
                 div.innerHTML = `
-                     <span>${item.taskNumber}</span>
-                    <span>${item.taskName}</span>
-                    <span>${item.taskDate}</span>
-                    <span>${item.taskDone ? 'Yes' : 'No'}</span>
+                    <span class="task-number">${item.taskNumber}</span>
+                    <span class="task-name">${item.taskName}</span>
+                    <span class="task-date">${item.taskDate}</span>
                     <button onclick="markTaskDone(${item.taskNumber})">Mark Done</button>
                 `;
                 pendingDiv.appendChild(div);
