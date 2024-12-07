@@ -168,3 +168,21 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     });
 });
+
+
+document.addEventListener("DOMContentLoaded", async () => {
+    try {
+        const response = await fetch("https://raw.githubusercontent.com/dwyl/quotes/refs/heads/main/quotes.json");
+        const quotes = await response.json();
+
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        const randomQuote = quotes[randomIndex];
+
+        document.getElementById("quoteText").textContent = `"${randomQuote.text}"`;
+        document.getElementById("quoteAuthor").textContent = `- ${randomQuote.author || "Unknown"}`;
+    } catch (error) {
+        console.error("Error fetching quote:", error);
+        document.getElementById("quoteText").textContent = "Could not load quote.";
+        document.getElementById("quoteAuthor").textContent = "";
+    }
+});
