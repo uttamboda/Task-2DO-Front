@@ -136,6 +136,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 });
 
+
 function fetchData() {
     fetch(HOST + '/tasks')
         .then(response => {
@@ -162,8 +163,6 @@ function fetchData() {
                 div.setAttribute('draggable', 'true'); 
                 div.setAttribute('id', `task-${item.taskNumber}`); 
 
-                
-                
                 div.innerHTML = `
                     <span class="task-number">${item.taskNumber}</span>
                     <span class="task-name">${item.taskName}</span>
@@ -186,10 +185,10 @@ function fetchData() {
             });
 
             completedDiv.addEventListener('dragover', allowDrop);
-            completedDiv.addEventListener('drop', (event) => dropTask(event, 'completed'));
+            completedDiv.addEventListener('drop', (event) => dropTask(event, 'completed', data));
 
             pendingDiv.addEventListener('dragover', allowDrop);
-            pendingDiv.addEventListener('drop', (event) => dropTask(event, 'pending'));
+            pendingDiv.addEventListener('drop', (event) => dropTask(event, 'pending', data));
         })
         .catch(error => {
             console.error('Error fetching data:', error);
@@ -204,17 +203,49 @@ function dragStart(event) {
     event.dataTransfer.setData('text', event.target.id);
 }
 
-function dropTask(event, targetSection) {
+function dropTask(event, targetSection, data) {
     event.preventDefault();
 
     const taskId = event.dataTransfer.getData('text');
     const taskElement = document.getElementById(taskId);
+    const isCompleted = targetSection === 'completed'; 
 
-    if (targetSection === 'completed') {
+    if (isCompleted) {
         document.getElementById('completedTasks').appendChild(taskElement);
-    } else if (targetSection === 'pending') {
+    } else {
         document.getElementById('pendingTasks').appendChild(taskElement);
     }
 
-    console.log(`Task ${taskId} moved to ${targetSection}`);
+    const taskNumber = parseInt(taskId.split('-')[1], 10);
+
+    const taskData = data.find(item => item.taskNumber === taskNumber);
+
+    if (taskData) {
+        const updatedTask = {
+            taskNumber: taskData.taskNumber,
+            taskName: taskData.taskName,
+            taskDate: taskData.taskDate,
+            taskDone: isCompleted, 
+        };
+
+       
+        fetch(`${HOST}/tasks`, {
+            method: 'PUT', 
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedTask), 
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to update task state');
+            }
+            console.log(`Task ${taskNumber} successfully updated to ${isCompleted ? 'completed' : 'pending'}`);
+        })
+        .catch(error => {
+            console.error('Error updating task state:', error);
+        });
+    } else {
+        console.error('Task data not found for taskNumber', taskNumber);
+    }
 }
