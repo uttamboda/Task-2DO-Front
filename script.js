@@ -66,57 +66,6 @@ function markTaskDone(taskNumber) {
         });
 }
 
-function fetchData() {
-    fetch(HOST + '/tasks')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log(data);
-
-            const completedDiv = document.getElementById('completedTasks');
-            const pendingDiv = document.getElementById('pendingTasks');
-            
-            completedDiv.innerHTML = '';
-            pendingDiv.innerHTML = '';
-
-            const completedTasks = data.filter(item => item.taskDone === true);
-            const pendingTasks = data.filter(item => item.taskDone === false);
-
-
-            completedTasks.forEach(item => {
-                const div = document.createElement('div');
-                div.classList.add('task-row');
-                div.innerHTML = `
-                    <span class="task-number">${item.taskNumber}</span>
-                    <span class="task-name">${item.taskName}</span>
-                    <span class="task-date">${item.taskDate}</span>
-                    <button onclick="markTaskNotDone(${item.taskNumber})">Mark as Not Done</button>
-                `;
-                completedDiv.appendChild(div);
-            });
-
-            pendingTasks.forEach(item => {
-                const div = document.createElement('div');
-                div.classList.add('task-row');
-                
-                div.innerHTML = `
-                    <span class="task-number">${item.taskNumber}</span>
-                    <span class="task-name">${item.taskName}</span>
-                    <span class="task-date">${item.taskDate}</span>
-                    <button onclick="markTaskDone(${item.taskNumber})">Mark Done</button>
-                `;
-                pendingDiv.appendChild(div);
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
-}
-
 document.addEventListener('DOMContentLoaded', function () {
 
     fetchData();
